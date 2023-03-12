@@ -56,6 +56,13 @@ public class CountryController {
         return "country/delete";
     }
 
+    //パスパラメータのcode値を設定’（追加）
+    @GetMapping(value= { "/delete","/delete/{code}/" })
+    public String getCode(@PathVariable(name = "code",required = false) String code, Model model) {
+        model.addAttribute("code",code);
+        return "country/delete";
+    }
+
     // ----- 削除 -----
     @PostMapping("/delete")
     public String deleteCountry(@RequestParam("code") String code, Model model) {
@@ -65,5 +72,5 @@ public class CountryController {
         // 一覧画面にリダイレクト
         return "redirect:/country/list";
     }
-    // ----- 追加:ここまで -----
+
 }
